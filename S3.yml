@@ -25,6 +25,7 @@ Parameters:
 
 Resources:
   S3Bucket:
+    DeletionPolicy: Retain
     Type: 'AWS::S3::Bucket'
     Properties:
       BucketName: !Ref S3BucketName
