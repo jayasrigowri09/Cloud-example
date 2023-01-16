@@ -1,6 +1,6 @@
 
 AWSTemplateFormatVersion: '2010-09-09'
-#Description: CloudFormation template for s3 bucket configuration
+Description: CloudFormation template for s3 bucket configuration
 
 Parameters:
   S3BucketName:
@@ -25,7 +25,7 @@ Parameters:
 
 Resources:
   S3Bucket:
-    DeletionPolicy: Retain
+    #DeletionPolicy: Retain
     Type: 'AWS::S3::Bucket'
     Properties:
       BucketName: !Ref S3BucketName
