@@ -32,6 +32,9 @@ Resources:
       VersioningConfiguration:
         Status: !Ref VersioningConfiguration
       AccessControl: Private
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
       LifecycleConfiguration:
         Rules:
           - Id: GlacierRule
@@ -50,6 +53,7 @@ Resources:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
               SSEAlgorithm: AES256
+      
       Tags:
         - Key: Name
           Value: Dev
@@ -57,7 +61,15 @@ Resources:
 Outputs:
   BucketName: 
     Value: !Ref S3BucketName
+  WebsiteURL:
+    Value: !GetAtt 
+      - S3Bucket
+      - WebsiteURL
+    Description: URL for website hosted on S3
 
+  S3BucketSecureURL:
+    Value: !Join ['', ['https://', !GetAtt [S3Bucket, DomainName]]]
+    Description: Name of AWS S3 bucket to hold website content
 
       
 
