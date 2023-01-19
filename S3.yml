@@ -21,6 +21,7 @@ Parameters:
     AllowedValues:
       - Enabled
       - Disabled
+    Default: Enabled
 
   Accesscontrol:
     Type: String
@@ -63,7 +64,7 @@ Parameters:
 
   ownershipcontrols:
         Rules:
-          - ObjectOwnership: BucketOwnerPreferred   
+          - ObjectOwnership: BucketOwnerenforced  
 
 Resources:
   S3Bucket:
