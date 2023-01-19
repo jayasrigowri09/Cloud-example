@@ -15,6 +15,13 @@ Parameters:
       - Suspended
     Default: Enabled
 
+  Accesscontrol:
+    Type: String
+    AllowedValues:
+      - Public
+      - private
+    Default: Private 
+
   blockpublicAcls:
     Type: String
     Description: Block Public ACLS
@@ -55,7 +62,7 @@ Resources:
       BucketName: !Ref S3BucketName
       VersioningConfiguration:
         Status: !Ref VersioningConfiguration
-      AccessControl: Private
+      AccessControl: !Ref Accesscontrol
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: error.html
