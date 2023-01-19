@@ -15,6 +15,13 @@ Parameters:
       - Suspended
     Default: Enabled
 
+  objectlockconfiguration:
+    Type: String
+    Description: 
+    AllowedValues:
+      - Enabled
+      - Disabled
+
   Accesscontrol:
     Type: String
     AllowedValues:
@@ -54,6 +61,10 @@ Parameters:
       - false
     Default: true
 
+  ownershipcontrols:
+        Rules:
+          - ObjectOwnership: BucketOwnerPreferred   
+
 Resources:
   S3Bucket:
     #DeletionPolicy: Retain
@@ -62,10 +73,15 @@ Resources:
       BucketName: !Ref S3BucketName
       VersioningConfiguration:
         Status: !Ref VersioningConfiguration
+
+      ObjectLockConfiguration: !Ref objectlockconfiguration
+
       AccessControl: !Ref Accesscontrol
+
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: error.html
+
       LifecycleConfiguration:
         Rules:
           - Id: GlacierRule
@@ -75,11 +91,14 @@ Resources:
             Transitions:
               - TransitionInDays: 1
                 StorageClass: GLACIER
+                
       PublicAccessBlockConfiguration:
         BlockPublicAcls: !Ref blockpublicAcls
         BlockPublicPolicy: !Ref blockpublicpolicy
         IgnorePublicAcls: !Ref ignorepublicAcls
         RestrictPublicBuckets: !Ref restrictpublicbuckets 
+      OwnerShipControls: !Ref ownershipcontrols
+        
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
@@ -92,6 +111,7 @@ Resources:
 Outputs:
   BucketName: 
     Value: !Ref S3BucketName
+
   WebsiteURL:
     Value: !GetAtt 
       - S3Bucket
@@ -101,6 +121,8 @@ Outputs:
   S3BucketSecureURL:
     Value: !Join ['', ['https://', !GetAtt [S3Bucket, DomainName]]]
     Description: Name of AWS S3 bucket to hold website content
+
+
 
       
 
