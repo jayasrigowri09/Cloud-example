@@ -15,13 +15,37 @@ Parameters:
       - Suspended
     Default: Enabled
 
-  #blockpublicACls:
-    #Type: String
-    #Description: Block Public ACLs
-    #AllowedValues:
-     # - true
-      #- false
-    #Default: true
+  blockpublicAcls:
+    Type: String
+    Description: Block Public ACLS
+    AllowedValues:
+      - true
+      - false
+    Default: true
+
+  blockpublicpolicy:
+    Type: String
+    Description: Block Public Policy
+    AllowedValues:
+      - true
+      - false
+    Default: true
+
+  ignorepubliccAcls:
+    Type: String
+    Description: Block Public ACLS
+    AllowedValues:
+      - true
+      - false
+    Default: true
+
+  restrictpublicbuckets:
+    Type: String
+    Description: Block Public ACLS
+    AllowedValues:
+      - true
+      - false
+    Default: true
 
 Resources:
   S3Bucket:
@@ -45,10 +69,10 @@ Resources:
               - TransitionInDays: 1
                 StorageClass: GLACIER
       PublicAccessBlockConfiguration:
-        BlockPublicAcls: true
-        BlockPublicPolicy: true
-        IgnorePublicAcls: true
-        RestrictPublicBuckets: true
+        BlockPublicAcls: !Ref blockpublicAcls
+        BlockPublicPolicy: !Ref blockpublicpolicy
+        IgnorePublicAcls: !Ref ignorepublicAcls
+        RestrictPublicBuckets: !Ref restrictpublicbuckets 
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
