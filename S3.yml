@@ -105,52 +105,7 @@ Resources:
         IgnorePublicAcls: !Ref ignorepublicAcls
         RestrictPublicBuckets: !Ref restrictpublicbuckets 
 
-      S3EncryptionKey:
-        Type: AWS::KMS::Key 
-        Properties:
-          Description: An example symmetric encryption KMS key
-          EnableKeyRotation: true
-          PendingWindowInDays: 2
-        KeyPolicy:
-          Version: 2012-10-17
-          Id: key-default-1
-        Statement:
-          - Sid: Enable IAM User Permissions
-            Effect: Allow
-            Principal:
-            AWS: 'arn:aws:iam::111122223333:root'
-            Action: 'kms:*'
-            Resource: '*'
-          - Sid: Allow administration of the key
-            Effect: Allow
-            Principal:
-            AWS: 'arn:aws:iam::111122223333:user/Alice'
-            Action:
-            - 'kms:Create*'
-            - 'kms:Describe*'
-            - 'kms:Enable*'
-            - 'kms:List*'
-            - 'kms:Put*'
-            - 'kms:Update*'
-            - 'kms:Revoke*'
-            - 'kms:Disable*'
-            - 'kms:Get*'
-            - 'kms:Delete*'
-            - 'kms:ScheduleKeyDeletion'
-            - 'kms:CancelKeyDeletion'
-            Resource: '*'
-          - Sid: Allow use of the key
-            Effect: Allow
-            Principal:
-            AWS: 'arn:aws:iam::111122223333:user/Bob'
-            Action:
-            - 'kms:DescribeKey'
-            - 'kms:Encrypt'
-            - 'kms:Decrypt'
-            - 'kms:ReEncrypt*'
-            - 'kms:GenerateDataKey'
-            - 'kms:GenerateDataKeyWithoutPlaintext'
-            Resource: '*' 
+      
 
       OwnerShipControls: !Ref ownershipcontrols
         
