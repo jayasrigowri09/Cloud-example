@@ -15,13 +15,13 @@ Parameters:
       - Suspended
     Default: Enabled
 
-  objectlockconfiguration:
-    Type: String
-    Description: 
-    AllowedValues:
-      - Enabled
-      - Disabled
-    Default: Enabled
+  #objectlockconfiguration:
+   # Type: String
+    #Description: 
+    #AllowedValues:
+     # - Enabled
+      #- Disabled
+    #Default: Enabled
 
   Accesscontrol:
     Type: String
@@ -74,9 +74,15 @@ Resources:
       BucketName: !Ref S3BucketName
       VersioningConfiguration:
         Status: !Ref VersioningConfiguration
-
-      ObjectLockConfiguration: !Ref objectlockconfiguration
-
+      
+      ObjectLockEnabled: true
+      ObjectLockConfiguration:
+        ObjectLockEnabled: Enabled
+        Rule:
+      DefaultRetention: 
+      Mode: Goverance
+      Days: 1
+        
       AccessControl: !Ref Accesscontrol
 
       WebsiteConfiguration:
@@ -98,12 +104,61 @@ Resources:
         BlockPublicPolicy: !Ref blockpublicpolicy
         IgnorePublicAcls: !Ref ignorepublicAcls
         RestrictPublicBuckets: !Ref restrictpublicbuckets 
+
+      S3EncryptionKey:
+        Type: AWS::KMS::Key 
+        Properties:
+          Description: An example symmetric encryption KMS key
+          EnableKeyRotation: true
+          PendingWindowInDays: 2
+        KeyPolicy:
+          Version: 2012-10-17
+          Id: key-default-1
+        Statement:
+          - Sid: Enable IAM User Permissions
+            Effect: Allow
+            Principal:
+            AWS: 'arn:aws:iam::111122223333:root'
+            Action: 'kms:*'
+            Resource: '*'
+          - Sid: Allow administration of the key
+            Effect: Allow
+            Principal:
+            AWS: 'arn:aws:iam::111122223333:user/Alice'
+            Action:
+            - 'kms:Create*'
+            - 'kms:Describe*'
+            - 'kms:Enable*'
+            - 'kms:List*'
+            - 'kms:Put*'
+            - 'kms:Update*'
+            - 'kms:Revoke*'
+            - 'kms:Disable*'
+            - 'kms:Get*'
+            - 'kms:Delete*'
+            - 'kms:ScheduleKeyDeletion'
+            - 'kms:CancelKeyDeletion'
+            Resource: '*'
+          - Sid: Allow use of the key
+            Effect: Allow
+            Principal:
+            AWS: 'arn:aws:iam::111122223333:user/Bob'
+            Action:
+            - 'kms:DescribeKey'
+            - 'kms:Encrypt'
+            - 'kms:Decrypt'
+            - 'kms:ReEncrypt*'
+            - 'kms:GenerateDataKey'
+            - 'kms:GenerateDataKeyWithoutPlaintext'
+            Resource: '*'
+
       OwnerShipControls: !Ref ownershipcontrols
         
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
-              SSEAlgorithm: AES256
+              KMSMasterKeyID: !Ref S3EncryptionKey
+              SSEAlgorithm: 'aws:kms'
       
       Tags:
         - Key: Name
