@@ -77,7 +77,7 @@ Resources:
       
       ObjectLockEnabled: true
       ObjectLockConfiguration:
-        ObjectLockEnabled: Enabled
+        #ObjectLockEnabled: Enabled
         Rule:
           DefaultRetention: 
             Mode: Goverance
@@ -150,14 +150,14 @@ Resources:
             - 'kms:ReEncrypt*'
             - 'kms:GenerateDataKey'
             - 'kms:GenerateDataKeyWithoutPlaintext'
-            Resource: '*'
+            Resource: '*' 
 
       OwnerShipControls: !Ref ownershipcontrols
         
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
-              KMSMasterKeyID: !Ref S3EncryptionKey
+              KMSMasterKeyID: Kms-Key-ARN
               SSEAlgorithm: 'aws:kms'
       
       Tags:
