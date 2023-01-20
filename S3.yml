@@ -72,42 +72,42 @@ Resources:
         ##   Mode: Goverance
           #  Days: 1
         
-      AccessControl: Private  
+    AccessControl: Private  
 
-      WebsiteConfiguration:
-        IndexDocument: index.html
-        ErrorDocument: error.html
+    WebsiteConfiguration:
+      IndexDocument: index.html
+      ErrorDocument: error.html
 
-      LifecycleConfiguration:
-        Rules:
-          - Id: GlacierRule
+    LifecycleConfiguration:
+      Rules:
+        - Id: GlacierRule
             #Prefix: glacier
-            Status: Enabled
-            ExpirationInDays: 365
-            Transitions:
-              - TransitionInDays: 1
-                StorageClass: GLACIER
+          Status: Enabled
+          ExpirationInDays: 365
+          Transitions:
+            - TransitionInDays: 1
+              StorageClass: GLACIER
                 
-      PublicAccessBlockConfiguration:
+    PublicAccessBlockConfiguration:
         BlockPublicAcls: !Ref blockpublicAcls
         BlockPublicPolicy: !Ref blockpublicpolicy
         IgnorePublicAcls: !Ref ignorepubliccAcls
         RestrictPublicBuckets: !Ref restrictpublicbuckets 
 
-      OwnerShipControls:
-        Rules:
+    OwnerShipControls:
+      Rules:
         - ObjectOwnership: BucketOwnerenforced 
 
                  
-      BucketEncryption:
-        ServerSideEncryptionConfiguration:
-          - ServerSideEncryptionByDefault:
-              #KMSMasterKeyID: Kms-Key-ARN
-              SSEAlgorithm: 'aws:kms'
+    BucketEncryption:
+      ServerSideEncryptionConfiguration:
+        - ServerSideEncryptionByDefault:
+            #KMSMasterKeyID: Kms-Key-ARN
+            SSEAlgorithm: 'aws:kms'
       
-      Tags:
-        - Key: Name
-          Value: Dev
+    Tags:
+      - Key: Name
+        Value: Dev
       
 Outputs:
   BucketName: 
