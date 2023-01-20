@@ -23,12 +23,12 @@ Parameters:
       #- Disabled
     #Default: Enabled
 
-  Accesscontrol:
-    Type: String
-    AllowedValues:
-      - Public
-      - private
-    Default: Private 
+  #Accesscontrol:
+   # Type: String
+    #AllowedValues:
+     # - Public
+      #- private
+    #Default: Private 
 
   blockpublicAcls:
     Type: String
@@ -83,7 +83,7 @@ Resources:
             Mode: Goverance
             Days: 1
         
-      AccessControl: !Ref Accesscontrol
+      AccessControl: Private  
 
       WebsiteConfiguration:
         IndexDocument: index.html
