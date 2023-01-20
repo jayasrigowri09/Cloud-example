@@ -79,9 +79,9 @@ Resources:
       ObjectLockConfiguration:
         ObjectLockEnabled: Enabled
         Rule:
-      DefaultRetention: 
-      Mode: Goverance
-      Days: 1
+          DefaultRetention: 
+            Mode: Goverance
+            Days: 1
         
       AccessControl: !Ref Accesscontrol
 
