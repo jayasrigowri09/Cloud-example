@@ -63,8 +63,8 @@ Parameters:
     Default: true
 
   ownershipcontrols:
-        Rules:
-          - ObjectOwnership: BucketOwnerenforced  
+    Rules:
+      - ObjectOwnership: BucketOwnerenforced  
 
 Resources:
   S3Bucket:
