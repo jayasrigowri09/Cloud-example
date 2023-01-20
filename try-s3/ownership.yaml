@@ -19,5 +19,6 @@ Resources:
   S3Bucket:
     Type: 'AWS::S3::Bucket'
     Properties:
+      AccessControl: Disabled
       ObjectOwnership: !Ref objectownership
         
