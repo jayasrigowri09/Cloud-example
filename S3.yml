@@ -72,7 +72,7 @@ Resources:
         ##   Mode: Goverance
           #  Days: 1
         
-    AccessControl: Private  
+    # AccessControl: Private  
 
     WebsiteConfiguration:
       IndexDocument: index.html
