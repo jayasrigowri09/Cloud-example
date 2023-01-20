@@ -56,6 +56,9 @@ Resources:
       VersioningConfiguration:
         Status: !Ref VersioningConfiguration
       AccessControl: Private
+      OwnerShipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerenforced
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: error.html
@@ -84,6 +87,7 @@ Resources:
       
 Outputs:
   BucketName: 
+    Description: Name of the S3 Bucket
     Value: !Ref S3BucketName
   WebsiteURL:
     Value: !GetAtt 
