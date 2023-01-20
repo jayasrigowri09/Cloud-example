@@ -100,13 +100,12 @@ Resources:
         BlockPublicPolicy: !Ref blockpublicpolicy
         IgnorePublicAcls: !Ref ignorepublicAcls
         RestrictPublicBuckets: !Ref restrictpublicbuckets 
-        
+
       OwnerShipControls:
         Rules:
         - ObjectOwnership: BucketOwnerenforced 
 
-            
-        
+                 
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
