@@ -58,7 +58,7 @@ Resources:
       AccessControl: Private
       OwnerShipControls:
         Rules:
-          - ObjectOwnership: BucketOwnerenforced
+          - ObjectOwnership: BucketOwnerEnforced
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: error.html
