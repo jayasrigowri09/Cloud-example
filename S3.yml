@@ -60,11 +60,7 @@ Parameters:
     AllowedValues:
       - true
       - false
-    Default: true
-
-  ownershipcontrols:
-    Rules:
-      - ObjectOwnership: BucketOwnerenforced  
+    Default: true 
 
 Resources:
   S3Bucket:
@@ -104,10 +100,12 @@ Resources:
         BlockPublicPolicy: !Ref blockpublicpolicy
         IgnorePublicAcls: !Ref ignorepublicAcls
         RestrictPublicBuckets: !Ref restrictpublicbuckets 
+        
+      OwnerShipControls:
+        Rules:
+        - ObjectOwnership: BucketOwnerenforced 
 
-      
-
-      OwnerShipControls: !Ref ownershipcontrols
+            
         
       BucketEncryption:
         ServerSideEncryptionConfiguration:
