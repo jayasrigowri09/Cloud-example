@@ -91,7 +91,7 @@ Resources:
       PublicAccessBlockConfiguration:
         BlockPublicAcls: !Ref blockpublicAcls
         BlockPublicPolicy: !Ref blockpublicpolicy
-        IgnorePublicAcls: !Ref ignorepublicAcls
+        IgnorePublicAcls: !Ref ignorepubliccAcls
         RestrictPublicBuckets: !Ref restrictpublicbuckets 
 
       OwnerShipControls:
