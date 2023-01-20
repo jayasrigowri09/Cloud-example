@@ -2,12 +2,13 @@ AWSTemplateFormatVersion: 2010-09-09
 
 Properties:
   ObjectOwnership:
-  Type: String
-  Description: create ownership of objects
-  AllowedValues:
-    - BucketOwnerEnforced
-    - BucketOwnerPreferred
-    - ObjectWriter
+    Type: String
+    Description: create ownership of objects
+    AllowedValues:
+      - BucketOwnerEnforced
+      - BucketOwnerPreferred
+      - ObjectWriter
+    Default: BucketOwnerEnforced
 
 
 
