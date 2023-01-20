@@ -23,13 +23,7 @@ Parameters:
       #- Disabled
     #Default: Enabled
 
-  #Accesscontrol:
-   # Type: String
-    #AllowedValues:
-     # - Public
-      #- private
-    #Default: Private 
-
+  
   blockpublicAcls:
     Type: String
     Description: Block Public ACLS
@@ -71,13 +65,12 @@ Resources:
       VersioningConfiguration:
         Status: !Ref VersioningConfiguration
       
-      ObjectLockEnabled: true
-      ObjectLockConfiguration:
+     # ObjectLockEnabled: true
+      #ObjectLockConfiguration:
         #ObjectLockEnabled: Enabled
-        Rule:
-          DefaultRetention: 
-            Mode: Goverance
-            Days: 1
+       # Rule:
+        ##   Mode: Goverance
+          #  Days: 1
         
       AccessControl: Private  
 
@@ -109,7 +102,7 @@ Resources:
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
-              KMSMasterKeyID: Kms-Key-ARN
+              #KMSMasterKeyID: Kms-Key-ARN
               SSEAlgorithm: 'aws:kms'
       
       Tags:
