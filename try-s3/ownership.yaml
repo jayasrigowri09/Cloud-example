@@ -1,8 +1,19 @@
 AWSTemplateFormatVersion: 2010-09-09
+
+Properties:
+  ObjectOwnership:
+  Type: String
+  Description: create ownership of objects
+  AllowedValues:
+    - BucketOwnerEnforced
+    - BucketOwnerPreferred
+    - ObjectWriter
+
+
+
 Resources:
   S3Bucket:
     Type: 'AWS::S3::Bucket'
     Properties:
-      OwnershipControls:
-        Rules:
-          - ObjectOwnership: BucketOwnerPreferred
+      OwnershipControls: !Ref ObjectOwnership
+        
