@@ -9,7 +9,7 @@ Parameters:
   S3BucketName:
     Description: Enter S3 Bucket Name 
     Type: String
-    
+
   versioningconfiguration: 
     Type: String
     Description: Status Of Versioning
@@ -17,6 +17,20 @@ Parameters:
       - Enabled
       - Suspended
     Default: Enabled
+
+  accesscontrol:
+    Type: String
+    Description: Select Accesscontrol 
+    AllowedValues:
+      - BucketOwnerFullControl
+      - Private
+      - PublicRead
+      - PublicReadWrite
+      - AuthnticatedRead
+      - LogDeliverywRITE
+      - BucketOwnerRead
+      - AwsExecRead
+    Default: BucketOwnerFullControl
 
 
 Resources:
