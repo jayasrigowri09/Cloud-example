@@ -9,14 +9,14 @@ Parameters:
     Description: Enter S3 Bucket Name 
     Type: String
 
-  objectownership:
-    Type: String
-    Description: create ownership of objects
-    AllowedValues:
-      - BucketOwnerEnforced
-      - BucketOwnerPreferred
-      - ObjectWriter
-    Default: BucketOwnerEnforced
+  #objectownership:
+   # Type: String
+    #Description: create ownership of objects
+    #AllowedValues:
+     # - BucketOwnerEnforced
+      #- BucketOwnerPreferred
+      #- ObjectWriter
+    #Default: BucketOwnerEnforced
 
 
   VersioningConfiguration: 
@@ -82,6 +82,12 @@ Resources:
             Transitions:
               - TransitionInDays: 1
                 StorageClass: GLACIER
+  S3BucketOwnership:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerPreferred
       PublicAccessBlockConfiguration:
         BlockPublicAcls: !Ref blockpublicAcls
         BlockPublicPolicy: !Ref blockpublicpolicy
