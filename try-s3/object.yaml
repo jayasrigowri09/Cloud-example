@@ -53,7 +53,7 @@ Resources:
 
       OwnershipControls:
         Rules:
-          - ObjectOwnership: BucketOwnerEnforced
+          - ObjectOwnership: BucketOwnerPreferred
 
       ObjectLockEnabled: !Ref objectlockenabled
       ObjectLockConfiguration:
