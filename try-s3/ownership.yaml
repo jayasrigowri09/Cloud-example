@@ -25,9 +25,9 @@ Resources:
       ObjectLockConfiguration:
         ObjectLockEnabled: Enabled
         Rule: 
-      DefaultRetention:
-      Mode: Goverence
-      Days: "1"
-      
+          DefaultRetention:
+            Mode: Goverence
+            Days: "1"
+
       ObjectOwnership: !Ref objectownership
         
