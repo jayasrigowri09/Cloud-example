@@ -23,7 +23,7 @@ Parameters:
       - false
     Default: true
 
-  objectownership:
+  ownershipcontrols:
     Type: String
     Description: create ownership of objects
     AllowedValues:
@@ -78,9 +78,6 @@ Parameters:
       - false
     Default: true 
 
-
-
-
 Resources:
   S3Bucket:
     Type: 'AWS::S3::Bucket'
@@ -92,7 +89,7 @@ Resources:
 
       AccessControl: !Ref accesscontrol
 
-      ObjectOwnerShip: !Ref objectownership
+      OwnerShipControls: !Ref ownershipcontrols
 
       ObjectLockEnabled: !Ref objectlockenabled
       ObjectLockConfiguration:
