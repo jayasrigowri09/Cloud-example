@@ -101,7 +101,7 @@ Resources:
 
       OwnerShipControls:
         Rules:
-          - ObjectOwnership: BucketOwnerPreferred   
+          - ObjectOwnership: BucketOwnerEnforced
 
       LifecycleConfiguration:
         Rules:
