@@ -3,15 +3,15 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: create s3 bucket ownership
 
-Properties:
-  objectownership:
-    Type: String
-    Description: create ownership of objects
-    AllowedValues:
-      - BucketOwnerEnforced
-      - BucketOwnerPreferred
-      - ObjectWriter
-    Default: BucketOwnerEnforced
+#Properties:
+ # objectownership:
+  #  Type: String
+   # Description: create ownership of objects
+    #AllowedValues:
+     # - BucketOwnerEnforced
+      #- BucketOwnerPreferred
+      #- ObjectWriter
+    #Default: BucketOwnerEnforced
 
 
 
@@ -20,6 +20,18 @@ Resources:
     Type: 'AWS::S3::Bucket'
     Properties:
       AccessControl: BucketOwnerFullControl
+
+      ObjectLockEnabled: true
+      ObjectLockConfiguration:
+        ObjectLockEnabled: Enabled
+        Rule: 
+      DefaultRetention:
+      Mode: Goverence
+      Days: "1"
+      
+
+
+
 
       ObjectOwnership: !Ref objectownership
         
