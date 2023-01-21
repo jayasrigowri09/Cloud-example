@@ -23,14 +23,14 @@ Parameters:
       - false
     Default: true
 
-  ownershipcontrols:
-    Type: String
-    Description: create ownership of objects
-    AllowedValues:
-      - BucketOwnerEnforced
-      - BucketOwnerPreferred
-      - ObjectWriter
-    Default: BucketOwnerEnforced
+  #ownershipcontrols:
+   # Type: String
+    #Description: create ownership of objects
+    #AllowedValues:
+    #  - BucketOwnerEnforced
+     # - BucketOwnerPreferred
+     # - ObjectWriter
+   # Default: BucketOwnerEnforced 
 
   accesscontrol:
     Type: String
@@ -89,7 +89,7 @@ Resources:
 
       AccessControl: !Ref accesscontrol
 
-      OwnerShipControls: !Ref ownershipcontrols
+      #OwnerShipControls: !Ref ownershipcontrols
 
       ObjectLockEnabled: !Ref objectlockenabled
       ObjectLockConfiguration:
@@ -98,6 +98,11 @@ Resources:
           DefaultRetention:
             Mode: Goverence
             Days: "1"
+
+       OwnerShipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced   
+
       LifecycleConfiguration:
         Rules:
           - Id: GlacierRule
