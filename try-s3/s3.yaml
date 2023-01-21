@@ -86,8 +86,9 @@ Resources:
     Type: 'AWS::S3::Bucket'
     Properties:
       OwnershipControls:
-        Rules:
-          - ObjectOwnership: BucketOwnerPreferred
+      Rules:
+        - ObjectOwnership: BucketOwnerPreferred
+        
       PublicAccessBlockConfiguration:
         BlockPublicAcls: !Ref blockpublicAcls
         BlockPublicPolicy: !Ref blockpublicpolicy
