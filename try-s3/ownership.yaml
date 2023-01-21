@@ -99,9 +99,14 @@ Resources:
             Mode: Goverence
             Days: "1"
 
-      OwnerShipControls:
+  S3BucketOwnership:
+    Type: 'AWS::S3::Bucket:Ownership'
+    Properties:
+      OwnershipControls:
         Rules:
-          - ObjectOwnership: BucketOwnerEnforced
+          - ObjectOwnership: BucketOwnerPreferred
+
+    
 
       LifecycleConfiguration:
         Rules:
