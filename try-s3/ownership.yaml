@@ -16,6 +16,13 @@ Parameters:
       - Suspended
     Default: Enabled
 
+  objectlockenabled:
+    Type: String
+    AllowedValues: 
+      - true
+      - false
+    Default: true
+
   objectownership:
     Type: String
     Description: create ownership of objects
@@ -87,7 +94,7 @@ Resources:
 
       ObjectOwnerShip: !Ref objectownership
 
-      ObjectLockEnabled: true
+      ObjectLockEnabled: !Ref objectlockenabled
       ObjectLockConfiguration:
         ObjectLockEnabled: Enabled
         Rule: 
