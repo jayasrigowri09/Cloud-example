@@ -21,6 +21,8 @@ Resources:
     Properties:
       AccessControl: BucketOwnerFullControl
 
+      ObjectOwnership: !Ref objectownership
+      
       ObjectLockEnabled: true
       ObjectLockConfiguration:
         ObjectLockEnabled: Enabled
@@ -29,5 +31,5 @@ Resources:
             Mode: Goverence
             Days: "1"
 
-      ObjectOwnership: !Ref objectownership
+      
         
