@@ -99,7 +99,7 @@ Resources:
             Mode: Goverence
             Days: "1"
 
-       OwnerShipControls:
+      OwnerShipControls:
         Rules:
           - ObjectOwnership: BucketOwnerEnforced   
 
