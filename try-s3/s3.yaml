@@ -68,7 +68,7 @@ Resources:
       BucketName: !Ref S3BucketName
       VersioningConfiguration:
         Status: !Ref VersioningConfiguration
-      AccessControl: 
+      AccessControl: Private
       
       #WebsiteConfiguration:
        # IndexDocument: index.html
@@ -88,7 +88,7 @@ Resources:
       OwnershipControls:
       Rules:
         - ObjectOwnership: BucketOwnerPreferred
-        
+
       PublicAccessBlockConfiguration:
         BlockPublicAcls: !Ref blockpublicAcls
         BlockPublicPolicy: !Ref blockpublicpolicy
