@@ -32,6 +32,13 @@ Parameters:
       - AwsExecRead
     Default: BucketOwnerFullControl
 
+  objectlockenabled:
+    Type: String
+    AllowedValues: 
+      - true
+      - false
+    Default: true
+
 
 Resources:
   S3Bucket:
@@ -47,3 +54,11 @@ Resources:
       OwnershipControls:
         Rules:
           - ObjectOwnership: BucketOwnerEnforced
+
+      ObjectLockEnabled: !Ref objectlockenabled
+      ObjectLockConfiguration:
+        ObjectLockEnabled: Enabled
+        Rule: 
+          DefaultRetention:
+            Mode: Goverence
+            Days: "1"
