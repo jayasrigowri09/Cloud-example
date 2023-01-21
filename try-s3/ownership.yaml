@@ -13,13 +13,28 @@ Parameters:
       - ObjectWriter
     Default: BucketOwnerEnforced
 
+  accesscontrol:
+    Type: String
+    Description: Select Accesscontrol 
+    AllowedValues:
+      - BucketOwnerFullControl
+      - Private
+      - PublicRead
+      - PublicReadWrite
+      - AuthnticatedRead
+      - LogDeliverywRITE
+      - BucketOwnerRead
+      - AwsExecRead
+    Default: BucketOwnerFullControl
+
+
 
 
 Resources:
   S3Bucket:
     Type: 'AWS::S3::Bucket'
     Properties:
-      AccessControl: BucketOwnerFullControl
+      AccessControl: !Ref accesscontrol
 
       ObjectOwnerShip: !Ref objectownership
 

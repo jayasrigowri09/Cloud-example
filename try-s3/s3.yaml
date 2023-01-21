@@ -9,6 +9,16 @@ Parameters:
     Description: Enter S3 Bucket Name 
     Type: String
 
+  objectownership:
+    Type: String
+    Description: create ownership of objects
+    AllowedValues:
+      - BucketOwnerEnforced
+      - BucketOwnerPreferred
+      - ObjectWriter
+    Default: BucketOwnerEnforced
+
+
   VersioningConfiguration: 
     Type: String
     Description: Status Of Versioning
@@ -58,13 +68,11 @@ Resources:
       BucketName: !Ref S3BucketName
       VersioningConfiguration:
         Status: !Ref VersioningConfiguration
-      AccessControl: Private
-      OwnerShipControls:
-        Rules:
-          - ObjectOwnership: BucketOwnerPreferred
-      WebsiteConfiguration:
-        IndexDocument: index.html
-        ErrorDocument: error.html
+      AccessControl: 
+      
+      #WebsiteConfiguration:
+       # IndexDocument: index.html
+        #ErrorDocument: error.html
       LifecycleConfiguration:
         Rules:
           - Id: GlacierRule
