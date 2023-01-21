@@ -37,7 +37,7 @@ Parameters:
       - AwsExecRead
     Default: BucketOwnerFullControl
 
-  Resources:
+Resources:
   S3Bucket:
     Type: 'AWS::S3::Bucket'
     Properties:
@@ -50,7 +50,7 @@ Parameters:
 
       OwnershipControls:
         Rules:
-          - ObjectOwnership: BucketOwnerPreferred
+         - ObjectOwnership: BucketOwnerPreferred
 
       ObjectLockEnabled: !Ref objectlockenabled
       ObjectLockConfiguration:
