@@ -4,6 +4,18 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: create s3 bucket ownership
 
 Parameters:
+  S3BucketName:
+    Description: Enter S3 Bucket Name 
+    Type: String
+
+  versioningconfiguration: 
+    Type: String
+    Description: Status Of Versioning
+    AllowedValues:
+      - Enabled
+      - Suspended
+    Default: Enabled
+
   objectownership:
     Type: String
     Description: create ownership of objects
@@ -27,6 +39,38 @@ Parameters:
       - AwsExecRead
     Default: BucketOwnerFullControl
 
+  blockpublicAcls:
+    Type: String
+    Description: Block Public ACLS
+    AllowedValues:
+      - true
+      - false
+    Default: true
+
+  blockpublicpolicy:
+    Type: String
+    Description: Block Public Policy
+    AllowedValues:
+      - true
+      - false
+    Default: true
+
+  ignorepubliccAcls:
+    Type: String
+    Description: Block Public ACLS
+    AllowedValues:
+      - true
+      - false
+    Default: true
+
+  restrictpublicbuckets:
+    Type: String
+    Description: Block Public ACLS
+    AllowedValues:
+      - true
+      - false
+    Default: true 
+
 
 
 
@@ -34,6 +78,11 @@ Resources:
   S3Bucket:
     Type: 'AWS::S3::Bucket'
     Properties:
+      BucketName: !Ref S3BucketName
+
+      VersioningConfiguration:
+        Status: !Ref versioningconfiguration
+
       AccessControl: !Ref accesscontrol
 
       ObjectOwnerShip: !Ref objectownership
@@ -45,6 +94,21 @@ Resources:
           DefaultRetention:
             Mode: Goverence
             Days: "1"
+      LifecycleConfiguration:
+        Rules:
+          - Id: GlacierRule
+            #Prefix: glacier
+            Status: Enabled
+            ExpirationInDays: 365
+            Transitions:
+              - TransitionInDays: 1
+                StorageClass: GLACIER
+                
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: !Ref blockpublicAcls
+        BlockPublicPolicy: !Ref blockpublicpolicy
+        IgnorePublicAcls: !Ref ignorepubliccAcls
+        RestrictPublicBuckets: !Ref restrictpublicbuckets
 
       
         
