@@ -100,13 +100,11 @@ Resources:
             Days: "1"
 
   S3BucketOwnership:
-    Type: 'AWS::S3::Bucket:Ownership'
+    Type: 'AWS::S3::Bucket'
     Properties:
       OwnershipControls:
         Rules:
           - ObjectOwnership: BucketOwnerPreferred
-
-    
 
       LifecycleConfiguration:
         Rules:
