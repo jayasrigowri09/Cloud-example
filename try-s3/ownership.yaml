@@ -29,9 +29,5 @@ Resources:
       Mode: Goverence
       Days: "1"
       
-
-
-
-
       ObjectOwnership: !Ref objectownership
         
